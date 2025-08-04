@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francisco Medina - Director Creativo</title>
+    
+    <!-- External Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Netlify CMS -->
+    <script src="https://cdn.jsdelivr.net/npm/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fefefe;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* CMS Admin Toggle */
+        .cms-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .cms-toggle:hover {
+            background: #059669;
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* Content sections */
+        .hidden {
+            display: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .evolution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .evolution-item {
+            text-align: center;
+        }
+
+        .evolution-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .evolution-period {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin: 3rem 0;
+        }
+
+        .service-item h3 {
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-item ul {
+            list-style: none;
+        }
+
+        .service-item li {
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .service-item li:before {
+            content: "→ ";
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+
+        .cases-grid {
+            display: grid;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .case-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .case-item:last-child {
+            border-bottom: none;
+        }
+
+        .case-result {
+            font-style: italic;
+            color: #666;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* CMS Panel */
+        .cms-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cms-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            height: 80%;
+            border-radius: 12px;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .cms-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-cms {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .cms-field {
+            margin-bottom: 1.5rem;
+        }
+
+        .cms-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .cms-field input,
+        .cms-field textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cms-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .save-changes {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-right: 1rem;
+        }
+
+        .save-changes:hover {
+            background: #059669;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .language-toggle, .cms-toggle {
+                top: 1rem;
+            }
+            
+            .language-toggle {
+                right: 1rem;
+            }
+            
+            .cms-toggle {
+                left: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .evolution-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-post {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .blog-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Success Message */
+        .success-banner {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Toggle -->
+    <button class="cms-toggle" onclick="toggleCMS()">
+        <i class="fas fa-cog"></i> Admin
+    </button>
+    
+    <!-- Language Toggle -->
+    <button class="language-toggle" onclick="toggleLanguage()">EN</button>
+
+    <!-- Success Banner -->
+    <div id="successBanner" class="success-banner">
+        <i class="fas fa-check-circle"></i> ¡Cambios guardados correctamente!
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1 id="main-title">Francisco Medina</h1>
+            <p class="subtitle" id="main-subtitle">Senior Copywriter - Director Creativo</p>
+            <p id="hero-tagline">De redactor a director: Creatividad con visión estratégica</p>
+        </div>
+    </section>
+
+    <!-- EVOLUTION SECTION -->
+    <section id="evolution-section">
+        <div class="container">
+            <h2 id="evolution-title">La Evolución</h2>
+            
+            <div class="evolution-grid">
+                <div class="evolution-item">
+                    <div class="evolution-number">01</div>
+                    <h3 id="act1-title">El Redactor</h3>
+                    <div class="evolution-period">2009-2012</div>
+                    <p id="act1-desc">Nací laboralmente como redactor publicitario. Aprendiendo el oficio, desarrollando la voz y entendiendo cómo las palabras pueden mover audiencias.</p>
+                </div>
+                
+                <div class="evolution-item">
+                    <div class="evolution-number">02</div>
+                    <h3 id="act2-title">El Estratega</h3>
+                    <div class="evolution-period">2013-2016</div>
+                    <p id="act2-desc">Mutando hacia el mundo digital, adquiriendo nuevos conocimientos que complementan la escritura. Entendiendo el negocio detrás de cada pieza creativa.</p>
+                </div>
+                
+                <div class="evolution-item">
+                    <div class="evolution-number">03</div>
+                    <h3 id="act3-title">El Director</h3>
+                    <div class="evolution-period">2016-presente</div>
+                    <p id="act3-desc">Liderando equipos creativos, dirigiendo estrategias que funcionan. Las habilidades blandas se convirtieron en mi superpoder para hacer que las ideas cobren vida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services-section">
+        <div class="container">
+            <h2 id="services-title">Servicios</h2>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3 id="service1-title">Dirección Creativa</h3>
+                    <ul>
+                        <li id="service1-item1">Desarrollo de conceptos que venden</li>
+                        <li id="service1-item2">Liderazgo de equipos creativos</li>
+                        <li id="service1-item3">Supervisión de campañas 360°</li>
+                    </ul>
+                </div>
+                
+                <div class="service-item">
+                    <h3 id="service2-title">Estrategia Digital</h3>
+                    <ul>
+                        <li id="service2-item1">Meta Ads strategy</li>
+                        <li id="service2-item2">Social media strategy</li>
+                        <li id="service2-item3">Performance creative</li>
+                    </ul>
+                </div>
+                
+                <div class="service-item">
+                    <h3 id="service3-title">Consultoría</h3>
+                    <ul>
+                        <li id="service3-item1">Auditorías creativas</li>
+                        <li id="service3-item2">Restructuración de equipos</li>
+                        <li id="service3-item3">Procesos creativos eficientes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES SECTION -->
+    <section id="cases-section">
+        <div class="container">
+            <h2 id="cases-title">Casos Destacados</h2>
+            
+            <div class="cases-grid">
+                <div class="case-item">
+                    <h3 id="case1-title">Cencosud Digital</h3>
+                    <p id="case1-desc">Lideré el equipo creativo digital para las cuentas de Jumbo, Santa Isabel y Retail Financiero Cencosud, desarrollando campañas digitales que cumplan objetivos comerciales de manera creativa.</p>
+                    <p class="case-result" id="case1-result">Resultado: Campañas digitales exitosas para el grupo retail más grande de Chile</p>
+                </div>
+                
+                <div class="case-item">
+                    <h3 id="case2-title">Advertising Not Dead</h3>
+                    <p id="case2-desc">Como Director Creativo desde 2016, he desarrollado estrategias creativas innovadoras que han posicionado a la agencia como referente en creatividad publicitaria.</p>
+                    <p class="case-result" id="case2-result">Resultado: 8+ años de liderazgo creativo exitoso</p>
+                </div>
+                
+                <div class="case-item">
+                    <h3 id="case3-title">SientoCuarenta</h3>
+                    <p id="case3-desc">Colectivo creativo propio que llevó el ingenio chileno de Twitter más allá de la plataforma, creando un libro de tuits ilustrados y una revista del medio.</p>
+                    <p class="case-result" id="case3-result">Resultado: Proyecto creativo independiente exitoso 2012-2014</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blog-section" class="hidden">
+        <div class="container">
+            <h2 id="blog-title">Blog</h2>
+            
+            <div class="blog-grid" id="blog-posts">
+                <!-- Blog posts will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact-section">
+        <div class="container">
+            <h2 id="contact-title">Conversemos</h2>
+            
+            <form class="contact-form" action="https://formspree.io/f/xgvzlbvo" method="POST">
+                <div class="form-group">
+                    <label for="from_name" id="label-name">Nombre completo</label>
+                    <input type="text" id="from_name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="from_email" id="label-email">Email</label>
+                    <input type="email" id="from_email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" id="label-phone">WhatsApp</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" id="label-message">Mensaje</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit" id="submit-btn">Enviar Mensaje</button>
+                
+                <div id="form-message" class="form-message" style="display: none;"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- CMS PANEL -->
+    <div id="cmsPanel" class="cms-panel">
+        <div class="cms-content">
+            <div class="cms-header">
+                <h2><i class="fas fa-cog"></i> Panel de Administración</h2>
+                <button class="close-cms" onclick="toggleCMS()">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+            </div>
+
+            <div class="cms-tabs">
+                <button class="tab-btn active" onclick="showTab('general')">General</button>
+                <button class="tab-btn" onclick="showTab('services')">Servicios</button>
+                <button class="tab-btn" onclick="showTab('cases')">Casos</button>
+                <button class="tab-btn" onclick="showTab('blog')">Blog</button>
+            </div>
+
+            <!-- General Tab -->
+            <div id="general-tab" class="tab-content">
+                <h3>Información General</h3>
+                
+                <div class="cms-field">
+                    <label>Nombre Principal</label>
+                    <input type="text" id="cms-main-title" value="Francisco Medina">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Subtítulo (Español)</label>
+                    <input type="text" id="cms-subtitle-es" value="Senior Copywriter - Director Creativo">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Subtítulo (Inglés)</label>
+                    <input type="text" id="cms-subtitle-en" value="Senior Copywriter - Creative Director">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Tagline (Español)</label>
+                    <input type="text" id="cms-tagline-es" value="De redactor a director: Creatividad con visión estratégica">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Tagline (Inglés)</label>
+                    <input type="text" id="cms-tagline-en" value="From copywriter to director: Creativity with strategic vision">
+                </div>
+            </div>
+
+            <!-- Services Tab -->
+            <div id="services-tab" class="tab-content hidden">
+                <h3>Servicios</h3>
+                
+                <div class="cms-field">
+                    <label>Servicio 1 - Título (Español)</label>
+                    <input type="text" id="cms-service1-title-es" value="Dirección Creativa">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Servicio 1 - Título (Inglés)</label>
+                    <input type="text" id="cms-service1-title-en" value="Creative Direction">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Servicio 1 - Items (uno por línea)</label>
+                    <textarea id="cms-service1-items">Desarrollo de conceptos que venden
+Liderazgo de equipos creativos
+Supervisión de campañas 360°</textarea>
+                </div>
+            </div>
+
+            <!-- Cases Tab -->
+            <div id="cases-tab" class="tab-content hidden">
+                <h3>Casos Destacados</h3>
+                
+                <div class="cms-field">
+                    <label>Caso 1 - Título</label>
+                    <input type="text" id="cms-case1-title" value="Cencosud Digital">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Caso 1 - Descripción</label>
+                    <textarea id="cms-case1-desc">Lideré el equipo creativo digital para las cuentas de Jumbo, Santa Isabel y Retail Financiero Cencosud, desarrollando campañas digitales que cumplan objetivos comerciales de manera creativa.</textarea>
+                </div>
+                
+                <div class="cms-field">
+                    <label>Caso 1 - Resultado</label>
+                    <input type="text" id="cms-case1-result" value="Resultado: Campañas digitales exitosas para el grupo retail más grande de Chile">
+                </div>
+            </div>
+
+            <!-- Blog Tab -->
+            <div id="blog-tab" class="tab-content hidden">
+                <h3>Blog</h3>
+                
+                <div class="cms-field">
+                    <label>Mostrar Sección Blog</label>
+                    <input type="checkbox" id="cms-show-blog" onchange="toggleBlogSection()">
+                </div>
+                
+                <div class="cms-field">
+                    <label>Título del Blog</label>
+                    <input type="text" id="cms-blog-title" value="Blog">
+                </div>
+                
+                <button onclick="addBlogPost()" class="btn-submit" style="width: auto; margin-bottom: 1rem;">
+                    <i class="fas fa-plus"></i> Agregar Post
+                </button>
+                
+                <div id="blog-posts-manager">
+                    <!-- Blog posts management will be here -->
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                <button onclick="saveChanges()" class="save-changes">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+                <button onclick="exportHTML()" class="save-changes" style="background: #6366f1;">
+                    <i class="fas fa-download"></i> Exportar HTML
+                </button>
+                <button onclick="resetToDefault()" class="save-changes" style="background: #ef4444;">
+                    <i class="fas fa-undo"></i> Restaurar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language toggle functionality
+        let currentLang = 'es';
+        
+        const translations = {
+            es: {
+                'main-subtitle': 'Senior Copywriter - Director Creativo',
+                'hero-tagline': 'De redactor a director: Creatividad con visión estratégica',
+                'evolution-title': 'La Evolución',
+                'act1-title': 'El Redactor',
+                'act1-desc': 'Nací laboralmente como redactor publicitario. Aprendiendo el oficio, desarrollando la voz y entendiendo cómo las palabras pueden mover audiencias.',
+                'act2-title': 'El Estratega',
+                'act2-desc': 'Mutando hacia el mundo digital, adquiriendo nuevos conocimientos que complementan la escritura. Entendiendo el negocio detrás de cada pieza creativa.',
+                'act3-title': 'El Director',
+                'act3-desc': 'Liderando equipos creativos, dirigiendo estrategias que funcionan. Las habilidades blandas se convirtieron en mi superpoder para hacer que las ideas cobren vida.',
+                'services-title': 'Servicios',
+                'service1-title': 'Dirección Creativa',
+                'service1-item1': 'Desarrollo de conceptos que venden',
+                'service1-item2': 'Liderazgo de equipos creativos',
+                'service1-item3': 'Supervisión de campañas 360°',
+                'service2-title': 'Estrategia Digital',
+                'service2-item1': 'Meta Ads strategy',
+                'service2-item2': 'Social media strategy',
+                'service2-item3': 'Performance creative',
+                'service3-title': 'Consultoría',
+                'service3-item1': 'Auditorías creativas',
+                'service3-item2': 'Restructuración de equipos',
+                'service3-item3': 'Procesos creativos eficientes',
+                'cases-title': 'Casos Destacados',
+                'case1-title': 'Cencosud Digital',
+                'case1-desc': 'Lideré el equipo creativo digital para las cuentas de Jumbo, Santa Isabel y Retail Financiero Cencosud, desarrollando campañas digitales que cumplan objetivos comerciales de manera creativa.',
+                'case1-result': 'Resultado: Campañas digitales exitosas para el grupo retail más grande de Chile',
+                'case2-title': 'Advertising Not Dead',
+                'case2-desc': 'Como Director Creativo desde 2016, he desarrollado estrategias creativas innovadoras que han posicionado a la agencia como referente en creatividad publicitaria.',
+                'case2-result': 'Resultado: 8+ años de liderazgo creativo exitoso',
+                'case3-title': 'SientoCuarenta',
+                'case3-desc': 'Colectivo creativo propio que llevó el ingenio chileno de Twitter más allá de la plataforma, creando un libro de tuits ilustrados y una revista del medio.',
+                'case3-result': 'Resultado: Proyecto creativo independiente exitoso 2012-2014',
+                'contact-title': 'Conversemos',
+                'blog-title': 'Blog',
+                'label-name': 'Nombre completo',
+                'label-email': 'Email',
+                'label-phone': 'WhatsApp',
+                'label-message': 'Mensaje',
+                'submit-btn': 'Enviar Mensaje'
+            },
+            en: {
+                'main-subtitle': 'Senior Copywriter - Creative Director',
+                'hero-tagline': 'From copywriter to director: Creativity with strategic vision',
+                'evolution-title': 'The Evolution',
+                'act1-title': 'The Copywriter',
+                'act1-desc': 'I was born professionally as an advertising copywriter. Learning the craft, developing voice and understanding how words can move audiences.',
+                'act2-title': 'The Strategist',
+                'act2-desc': 'Evolving into the digital world, acquiring new knowledge that complements writing. Understanding the business behind every creative piece.',
+                'act3-title': 'The Director',
+                'act3-desc': 'Leading creative teams, directing strategies that work. Soft skills became my superpower to bring ideas to life.',
+                'services-title': 'Services',
+                'service1-title': 'Creative Direction',
+                'service1-item1': 'Development of concepts that sell',
+                'service1-item2': 'Creative team leadership',
+                'service1-item3': '360° campaign supervision',
+                'service2-title': 'Digital Strategy',
+                'service2-item1': 'Meta Ads strategy',
+                'service2-item2': 'Social media strategy',
+                'service2-item3': 'Performance creative',
+                'service3-title': 'Consulting',
+                'service3-item1': 'Creative audits',
+                'service3-item2': 'Team restructuring',
+                'service3-item3': 'Efficient creative processes',
+                'cases-title': 'Featured Cases',
+                'case1-title': 'Cencosud Digital',
+                'case1-desc': 'Led the digital creative team for Jumbo, Santa Isabel and Cencosud Financial Retail accounts, developing digital campaigns that met commercial objectives creatively.',
+                'case1-result': 'Result: Successful digital campaigns for Chile\'s largest retail group',
+                'case2-title': 'Advertising Not Dead',
+                'case2-desc': 'As Creative Director since 2016, I have developed innovative creative strategies that have positioned the agency as a reference in advertising creativity.',
+                'case2-result': 'Result: 8+ years of successful creative leadership',
+                'case3-title': 'SientoCuarenta',
+                'case3-desc': 'Own creative collective that took Chilean wit from Twitter beyond the platform, creating an illustrated tweet book and a media magazine.',
+                'case3-result': 'Result: Successful independent creative project 2012-2014',
+                'contact-title': 'Let\'s Talk',
+                'blog-title': 'Blog',
+                'label-name': 'Full name',
+                'label-email': 'Email',
+                'label-phone': 'WhatsApp',
+                'label-message': 'Message',
+                'submit-btn': 'Send Message'
+            }
+        };
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'es' ? 'en' : 'es';
+            const toggleBtn = document.querySelector('.language-toggle');
+            
+            // Update toggle button
+            toggleBtn.textContent = newLang === 'es' ? 'EN' : 'ES';
+            
+            // Update all translatable elements
+            Object.keys(translations[newLang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = translations[newLang][key];
+                }
+            });
+            
+            currentLang = newLang;
+        }
+
+        // CMS functionality
+        function toggleCMS() {
+            const panel = document.getElementById('cmsPanel');
+            panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.remove('hidden');
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function saveChanges() {
+            // Save general settings
+            const mainTitle = document.getElementById('cms-main-title').value;
+            const subtitleEs = document.getElementById('cms-subtitle-es').value;
+            const subtitleEn = document.getElementById('cms-subtitle-en').value;
+            const taglineEs = document.getElementById('cms-tagline-es').value;
+            const taglineEn = document.getElementById('cms-tagline-en').value;
+            
+            // Update main content
+            document.getElementById('main-title').textContent = mainTitle;
+            
+            // Update translations
+            translations.es['main-subtitle'] = subtitleEs;
+            translations.en['main-subtitle'] = subtitleEn;
+            translations.es['hero-tagline'] = taglineEs;
+            translations.en['hero-tagline'] = taglineEn;
+            
+            // Apply current language
+            const currentContent = translations[currentLang];
+            Object.keys(currentContent).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = currentContent[key];
+                }
+            });
+            
+            // Save to localStorage
+            const siteData = {
+                mainTitle,
+                subtitleEs,
+                subtitleEn,
+                taglineEs,
+                taglineEn,
+                translations
+            };
+            
+            localStorage.setItem('franciscoSiteData', JSON.stringify(siteData));
+            
+            // Show success message
+            showSuccessBanner();
+            
+            // Close CMS panel
+            toggleCMS();
+        }
+
+        function showSuccessBanner() {
+            const banner = document.getElementById('successBanner');
+            banner.style.display = 'block';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 3000);
+        }
+
+        function exportHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'francisco-medina-portfolio.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function resetToDefault() {
+            if (confirm('¿Estás seguro de que quieres restaurar todos los valores por defecto?')) {
+                localStorage.removeItem('franciscoSiteData');
+                location.reload();
+            }
+        }
+
+        function toggleBlogSection() {
+            const showBlog = document.getElementById('cms-show-blog').checked;
+            const blogSection = document.getElementById('blog-section');
+            
+            if (showBlog) {
+                blogSection.classList.remove('hidden');
+            } else {
+                blogSection.classList.add('hidden');
+            }
+        }
+
+        function addBlogPost() {
+            const title = prompt('Título del post:');
+            const excerpt = prompt('Extracto del post:');
+            const date = new Date().toLocaleDateString();
+            
+            if (title && excerpt) {
+                const blogGrid = document.getElementById('blog-posts');
+                const postHTML = `
+                    <div class="blog-post">
+                        <div class="blog-date">${date}</div>
+                        <h3 class="blog-title">${title}</h3>
+                        <p class="blog-excerpt">${excerpt}</p>
+                    </div>
+                `;
+                blogGrid.innerHTML += postHTML;
+            }
+        }
+
+        // Load saved data on page load
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('franciscoSiteData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                // Update form fields
+                if (document.getElementById('cms-main-title')) {
+                    document.getElementById('cms-main-title').value = data.mainTitle || 'Francisco Medina';
+                    document.getElementById('cms-subtitle-es').value = data.subtitleEs || 'Senior Copywriter - Director Creativo';
+                    document.getElementById('cms-subtitle-en').value = data.subtitleEn || 'Senior Copywriter - Creative Director';
+                    document.getElementById('cms-tagline-es').value = data.taglineEs || 'De redactor a director: Creatividad con visión estratégica';
+                    document.getElementById('cms-tagline-en').value = data.taglineEn || 'From copywriter to director: Creativity with strategic vision';
+                }
+                
+                // Update content
+                if (data.translations) {
+                    Object.assign(translations.es, data.translations.es);
+                    Object.assign(translations.en, data.translations.en);
+                }
+                
+                // Apply changes
+                document.getElementById('main-title').textContent = data.mainTitle || 'Francisco Medina';
+                
+                const currentContent = translations[currentLang];
+                Object.keys(currentContent).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.textContent = currentContent[key];
+                    }
+                });
+            }
+        });
+
+        // Add CSS for tabs
+        const style = document.createElement('style');
+        style.textContent = `
+            .cms-tabs {
+                display: flex;
+                margin-bottom: 2rem;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .tab-btn {
+                background: none;
+                border: none;
+                padding: 1rem 1.5rem;
+                cursor: pointer;
+                border-bottom: 2px solid transparent;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+            
+            .tab-btn:hover {
+                background: #f8f9fa;
+            }
+            
+            .tab-btn.active {
+                border-bottom-color: #10b981;
+                color: #10b981;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submit-btn');
+            const messageDiv = document.getElementById('form-message');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+            
+            // The form will submit naturally to Formspree
+            // This is just for UI feedback
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = currentLang === 'es' ? 'Enviar Mensaje' : 'Send Message';
+            }, 2000);
+        });
+
+        // Netlify CMS Configuration (for future use)
+        window.CMS_CONFIG = {
+            backend: {
+                name: 'git-gateway',
+                branch: 'main'
+            },
+            media_folder: 'assets/images',
+            public_folder: '/assets/images',
+            collections: [
+                {
+                    name: 'pages',
+                    label: 'Páginas',
+                    files: [
+                        {
+                            name: 'home',
+                            label: 'Página Principal',
+                            file: 'content/home.md',
+                            fields: [
+                                { name: 'title', label: 'Título', widget: 'string' },
+                                { name: 'subtitle', label: 'Subtítulo', widget: 'string' },
+                                { name: 'tagline', label: 'Tagline', widget: 'text' }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: 'blog',
+                    label: 'Blog',
+                    folder: 'content/blog',
+                    create: true,
+                    fields: [
+                        { name: 'title', label: 'Título', widget: 'string' },
+                        { name: 'date', label: 'Fecha', widget: 'datetime' },
+                        { name: 'excerpt', label: 'Extracto', widget: 'text' },
+                        { name: 'body', label: 'Contenido', widget: 'markdown' }
+                    ]
+                }
+            ]
+        };
+    </script>
+</body>
+</html>    
