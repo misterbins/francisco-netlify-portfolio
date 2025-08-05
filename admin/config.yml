@@ -1,0 +1,97 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  - name: "config"
+    label: "Configuración del Sitio"
+    files:
+      - name: "general"
+        label: "Información General"
+        file: "content/config.json"
+        fields:
+          - {label: "Nombre", name: "name", widget: "string"}
+          - {label: "Título (ES)", name: "title_es", widget: "string"}
+          - {label: "Título (EN)", name: "title_en", widget: "string"}
+          - {label: "Subtítulo (ES)", name: "subtitle_es", widget: "string"}
+          - {label: "Subtítulo (EN)", name: "subtitle_en", widget: "string"}
+          - {label: "Tagline (ES)", name: "tagline_es", widget: "text"}
+          - {label: "Tagline (EN)", name: "tagline_en", widget: "text"}
+
+  - name: "evolution"
+    label: "Evolución Profesional"
+    files:
+      - name: "acts"
+        label: "Los 3 Actos"
+        file: "content/evolution.json"
+        fields:
+          - label: "Actos"
+            name: "acts"
+            widget: "list"
+            fields:
+              - {label: "Número", name: "number", widget: "string"}
+              - {label: "Título (ES)", name: "title_es", widget: "string"}
+              - {label: "Título (EN)", name: "title_en", widget: "string"}
+              - {label: "Período", name: "period", widget: "string"}
+              - {label: "Descripción (ES)", name: "description_es", widget: "text"}
+              - {label: "Descripción (EN)", name: "description_en", widget: "text"}
+
+  - name: "services"
+    label: "Servicios"
+    files:
+      - name: "services_list"
+        label: "Lista de Servicios"
+        file: "content/services.json"
+        fields:
+          - label: "Servicios"
+            name: "services"
+            widget: "list"
+            fields:
+              - {label: "Título (ES)", name: "title_es", widget: "string"}
+              - {label: "Título (EN)", name: "title_en", widget: "string"}
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - {label: "Item (ES)", name: "item_es", widget: "string"}
+                  - {label: "Item (EN)", name: "item_en", widget: "string"}
+
+  - name: "cases"
+    label: "Casos de Estudio"
+    folder: "content/cases"
+    create: true
+    fields:
+      - {label: "Título (ES)", name: "title_es", widget: "string"}
+      - {label: "Título (EN)", name: "title_en", widget: "string"}
+      - {label: "Descripción (ES)", name: "description_es", widget: "text"}
+      - {label: "Descripción (EN)", name: "description_en", widget: "text"}
+      - {label: "Resultado (ES)", name: "result_es", widget: "string"}
+      - {label: "Resultado (EN)", name: "result_en", widget: "string"}
+      - {label: "Imagen", name: "image", widget: "image", required: false}
+      - {label: "Orden", name: "order", widget: "number"}
+
+  - name: "pages"
+    label: "Páginas Adicionales"
+    folder: "content/pages"
+    create: true
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Contenido (ES)", name: "content_es", widget: "markdown"}
+      - {label: "Contenido (EN)", name: "content_en", widget: "markdown"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+      - {label: "Extracto", name: "excerpt", widget: "text"}
+      - {label: "Contenido", name: "body", widget: "markdown"}
+      - {label: "Imagen destacada", name: "featured_image", widget: "image", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
