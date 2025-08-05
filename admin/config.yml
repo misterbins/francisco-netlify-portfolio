@@ -1,97 +1,202 @@
-backend:
-  name: git-gateway
-  branch: main
+#FFB74D;">#4FC3F7;">backend:
+  #FFB74D;">#4FC3F7;">name: git-gateway
+  #FFB74D;">#4FC3F7;">branch: main
 
-media_folder: "static/images"
-public_folder: "/images"
+#FFB74D;">#4FC3F7;">media_folder: "images/uploads"
+#FFB74D;">#4FC3F7;">public_folder: "/images/uploads"
 
-collections:
-  - name: "config"
-    label: "Configuración del Sitio"
-    files:
-      - name: "general"
-        label: "Información General"
-        file: "content/config.json"
-        fields:
-          - {label: "Nombre", name: "name", widget: "string"}
-          - {label: "Título (ES)", name: "title_es", widget: "string"}
-          - {label: "Título (EN)", name: "title_en", widget: "string"}
-          - {label: "Subtítulo (ES)", name: "subtitle_es", widget: "string"}
-          - {label: "Subtítulo (EN)", name: "subtitle_en", widget: "string"}
-          - {label: "Tagline (ES)", name: "tagline_es", widget: "text"}
-          - {label: "Tagline (EN)", name: "tagline_en", widget: "text"}
-
-  - name: "evolution"
-    label: "Evolución Profesional"
-    files:
-      - name: "acts"
-        label: "Los 3 Actos"
-        file: "content/evolution.json"
-        fields:
-          - label: "Actos"
-            name: "acts"
-            widget: "list"
-            fields:
-              - {label: "Número", name: "number", widget: "string"}
-              - {label: "Título (ES)", name: "title_es", widget: "string"}
-              - {label: "Título (EN)", name: "title_en", widget: "string"}
-              - {label: "Período", name: "period", widget: "string"}
-              - {label: "Descripción (ES)", name: "description_es", widget: "text"}
-              - {label: "Descripción (EN)", name: "description_en", widget: "text"}
-
-  - name: "services"
-    label: "Servicios"
-    files:
-      - name: "services_list"
-        label: "Lista de Servicios"
-        file: "content/services.json"
-        fields:
-          - label: "Servicios"
-            name: "services"
-            widget: "list"
-            fields:
-              - {label: "Título (ES)", name: "title_es", widget: "string"}
-              - {label: "Título (EN)", name: "title_en", widget: "string"}
-              - label: "Items"
-                name: "items"
-                widget: "list"
-                fields:
-                  - {label: "Item (ES)", name: "item_es", widget: "string"}
-                  - {label: "Item (EN)", name: "item_en", widget: "string"}
-
-  - name: "cases"
-    label: "Casos de Estudio"
-    folder: "content/cases"
-    create: true
-    fields:
-      - {label: "Título (ES)", name: "title_es", widget: "string"}
-      - {label: "Título (EN)", name: "title_en", widget: "string"}
-      - {label: "Descripción (ES)", name: "description_es", widget: "text"}
-      - {label: "Descripción (EN)", name: "description_en", widget: "text"}
-      - {label: "Resultado (ES)", name: "result_es", widget: "string"}
-      - {label: "Resultado (EN)", name: "result_en", widget: "string"}
-      - {label: "Imagen", name: "image", widget: "image", required: false}
-      - {label: "Orden", name: "order", widget: "number"}
-
-  - name: "pages"
-    label: "Páginas Adicionales"
-    folder: "content/pages"
-    create: true
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Contenido (ES)", name: "content_es", widget: "markdown"}
-      - {label: "Contenido (EN)", name: "content_en", widget: "markdown"}
-      - {label: "Fecha", name: "date", widget: "datetime"}
-
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "content/blog"
-    create: true
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha", name: "date", widget: "datetime"}
-      - {label: "Extracto", name: "excerpt", widget: "text"}
-      - {label: "Contenido", name: "body", widget: "markdown"}
-      - {label: "Imagen destacada", name: "featured_image", widget: "image", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
+#FFB74D;">#4FC3F7;">collections:
+#F48FB1;">  - name: "config"
+    #FFB74D;">#4FC3F7;">label: "Configuración del Sitio"
+    #FFB74D;">#4FC3F7;">files:
+#F48FB1;">      - name: "general"
+        #FFB74D;">#4FC3F7;">label: "Información General"
+        #FFB74D;">#4FC3F7;">file: "_data/config.yml"
+        #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">          - label: "Información Personal"
+            #FFB74D;">#4FC3F7;">name: "personal"
+            #FFB74D;">#4FC3F7;">widget: "object"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - {label: "Nombre Completo", name: "full_name", widget: "string", default: "Francisco Medina"}
+#F48FB1;">              - label: "Subtítulo"
+                #FFB74D;">#4FC3F7;">name: "subtitle"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "string", default: "Senior Copywriter - Director Creativo"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "string", default: "Senior Copywriter - Creative Director"}
+#F48FB1;">              - label: "Tagline Principal"
+                #FFB74D;">#4FC3F7;">name: "tagline"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "text", default: "De redactor a director: Creatividad con visión estratégica"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "text", default: "From copywriter to director: Creativity with strategic vision"}
+#F48FB1;">
+          - label: #FFB74D;">"Información de Contacto"
+            #FFB74D;">#4FC3F7;">name: "contact"
+            #FFB74D;">#4FC3F7;">widget: "object"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - {label: "Email", name: "email", widget: "string"}
+#F48FB1;">              - {label: "Teléfono/WhatsApp", name: "phone", widget: "string"}
+#F48FB1;">              - {label: "LinkedIn URL", name: "linkedin", widget: "string"}
+#F48FB1;">              - {label: "Formspree ID", name: "formspree_id", widget: "string", default: "xgvzlbvo"}
+#F48FB1;">
+  - name: #FFB74D;">"evolution"
+    #FFB74D;">#4FC3F7;">label: "La Evolución"
+    #FFB74D;">#4FC3F7;">files:
+#F48FB1;">      - name: "acts"
+        #FFB74D;">#4FC3F7;">label: "Los 3 Actos"
+        #FFB74D;">#4FC3F7;">file: "_data/evolution.yml"
+        #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">          - label: "Título de Sección"
+            #FFB74D;">#4FC3F7;">name: "section_title"
+            #FFB74D;">#4FC3F7;">widget: "object"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - {label: "Español", name: "es", widget: "string", default: "La Evolución"}
+#F48FB1;">              - {label: "English", name: "en", widget: "string", default: "The Evolution"}
+#F48FB1;">          - label: "Actos"
+            #FFB74D;">#4FC3F7;">name: "acts"
+            #FFB74D;">#4FC3F7;">widget: "list"
+            #FFB74D;">#4FC3F7;">max: 3
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - {label: "Número", name: "number", widget: "string"}
+#F48FB1;">              - label: "Título"
+                #FFB74D;">#4FC3F7;">name: "title"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "string"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "string"}
+#F48FB1;">              - {label: "Período", name: "period", widget: "string"}
+#F48FB1;">              - label: "Descripción"
+                #FFB74D;">#4FC3F7;">name: "description"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "text"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "text"}
+#F48FB1;">
+  - name: #FFB74D;">"services"
+    #FFB74D;">#4FC3F7;">label: "Servicios"
+    #FFB74D;">#4FC3F7;">files:
+#F48FB1;">      - name: "service_list"
+        #FFB74D;">#4FC3F7;">label: "Lista de Servicios"
+        #FFB74D;">#4FC3F7;">file: "_data/services.yml"
+        #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">          - label: "Título de Sección"
+            #FFB74D;">#4FC3F7;">name: "section_title"
+            #FFB74D;">#4FC3F7;">widget: "object"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - {label: "Español", name: "es", widget: "string", default: "Servicios"}
+#F48FB1;">              - {label: "English", name: "en", widget: "string", default: "Services"}
+#F48FB1;">          - label: "Servicios"
+            #FFB74D;">#4FC3F7;">name: "services"
+            #FFB74D;">#4FC3F7;">widget: "list"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - label: "Título del Servicio"
+                #FFB74D;">#4FC3F7;">name: "title"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "string"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "string"}
+#F48FB1;">              - label: "Items del Servicio"
+                #FFB74D;">#4FC3F7;">name: "items"
+                #FFB74D;">#4FC3F7;">widget: "list"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - label: "Item"
+                    #FFB74D;">#4FC3F7;">name: "item"
+                    #FFB74D;">#4FC3F7;">widget: "object"
+                    #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                      - {label: "Español", name: "es", widget: "string"}
+#F48FB1;">                      - {label: "English", name: "en", widget: "string"}
+#F48FB1;">
+  - name: #FFB74D;">"cases"
+    #FFB74D;">#4FC3F7;">label: "Casos de Estudio"
+    #FFB74D;">#4FC3F7;">files:
+#F48FB1;">      - name: "case_studies"
+        #FFB74D;">#4FC3F7;">label: "Casos Destacados"
+        #FFB74D;">#4FC3F7;">file: "_data/cases.yml"
+        #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">          - label: "Título de Sección"
+            #FFB74D;">#4FC3F7;">name: "section_title"
+            #FFB74D;">#4FC3F7;">widget: "object"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - {label: "Español", name: "es", widget: "string", default: "Casos Destacados"}
+#F48FB1;">              - {label: "English", name: "en", widget: "string", default: "Featured Cases"}
+#F48FB1;">          - label: "Casos"
+            #FFB74D;">#4FC3F7;">name: "cases"
+            #FFB74D;">#4FC3F7;">widget: "list"
+            #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">              - label: "Título del Caso"
+                #FFB74D;">#4FC3F7;">name: "title"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "string"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "string"}
+#F48FB1;">              - label: "Descripción"
+                #FFB74D;">#4FC3F7;">name: "description"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "text"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "text"}
+#F48FB1;">              - label: "Resultado"
+                #FFB74D;">#4FC3F7;">name: "result"
+                #FFB74D;">#4FC3F7;">widget: "object"
+                #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">                  - {label: "Español", name: "es", widget: "string"}
+#F48FB1;">                  - {label: "English", name: "en", widget: "string"}
+#F48FB1;">              - {label: "Imagen (opcional)", name: "image", widget: "image", required: false}
+#F48FB1;">
+  - name: #FFB74D;">"blog"
+    #FFB74D;">#4FC3F7;">label: "Blog"
+    #FFB74D;">#4FC3F7;">folder: "_posts"
+    #FFB74D;">#4FC3F7;">create: true
+    #FFB74D;">#4FC3F7;">slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">      - {label: "Título", name: "title", widget: "string"}
+#F48FB1;">      - {label: "Fecha", name: "date", widget: "datetime"}
+#F48FB1;">      - {label: "Descripción", name: "description", widget: "text"}
+#F48FB1;">      - {label: "Imagen destacada", name: "featured_image", widget: "image", required: false}
+#F48FB1;">      - {label: "Contenido", name: "body", widget: "markdown"}
+#F48FB1;">      - label: "Idioma"
+        #FFB74D;">#4FC3F7;">name: "language"
+        #FFB74D;">#4FC3F7;">widget: "select"
+        #4FC3F7;">options: ["es", "en"]
+        #FFB74D;">#4FC3F7;">default: "es"
+#F48FB1;">
+  - name: #FFB74D;">"pages"
+    #FFB74D;">#4FC3F7;">label: "Páginas Adicionales"
+    #FFB74D;">#4FC3F7;">folder: "_pages"
+    #FFB74D;">#4FC3F7;">create: true
+    #FFB74D;">#4FC3F7;">slug: "{{slug}}"
+    #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">      - {label: "Título", name: "title", widget: "string"}
+#F48FB1;">      - {label: "Permalink", name: "permalink", widget: "string"}
+#F48FB1;">      - label: "Idioma"
+        #FFB74D;">#4FC3F7;">name: "language"
+        #FFB74D;">#4FC3F7;">widget: "select"
+        #4FC3F7;">options: ["es", "en"]
+        #FFB74D;">#4FC3F7;">default: "es"
+#F48FB1;">      - {label: "Contenido", name: "body", widget: "markdown"}
+#F48FB1;">      - {label: "Mostrar en menú", name: "show_in_menu", widget: "boolean", default: false}
+#F48FB1;">
+  - name: #FFB74D;">"settings"
+    #FFB74D;">#4FC3F7;">label: "Configuraciones Avanzadas"
+    #FFB74D;">#4FC3F7;">files:
+#F48FB1;">      - name: "seo"
+        #FFB74D;">#4FC3F7;">label: "SEO y Meta Tags"
+        #FFB74D;">#4FC3F7;">file: "_data/seo.yml"
+        #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">          - {label: "Título del sitio", name: "site_title", widget: "string"}
+#F48FB1;">          - {label: "Descripción del sitio", name: "site_description", widget: "text"}
+#F48FB1;">          - {label: "Palabras clave", name: "keywords", widget: "string"}
+#F48FB1;">          - {label: "URL del sitio", name: "site_url", widget: "string"}
+#F48FB1;">          - {label: "Imagen social", name: "social_image", widget: "image", required: false}
+#F48FB1;">          - {label: "Google Analytics ID", name: "google_analytics", widget: "string", required: false}
+#F48FB1;">      
+      - name: #FFB74D;">"social"
+        #FFB74D;">#4FC3F7;">label: "Redes Sociales"
+        #FFB74D;">#4FC3F7;">file: "_data/social.yml"
+        #FFB74D;">#4FC3F7;">fields:
+#F48FB1;">          - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+#F48FB1;">          - {label: "Twitter", name: "twitter", widget: "string", required: false}
+#F48FB1;">          - {label: "Instagram", name: "instagram", widget: "string", required: false}
+#F48FB1;">          - {label: "Behance", name: "behance", widget: "string", required: false}
+#F48FB1;">          - {label: "GitHub", name: "github", widget: "string", required: false}
